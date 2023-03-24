@@ -59,11 +59,6 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         UpdateHungerAndThirstBarsFill();
-
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            TakeDamage(50f);
-        }
     }
 
     public void TakeDamage(float damage, bool overTime = false)

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca79c4638662064a898de39b6ecc42a, type: 3}
+  m_Name: Cake
+  m_EditorClassIdentifier: 
+  name: Cake
+  description: it is a simple cake
+  visual: {fileID: 21300000, guid: 9d8acfbbe55c67d45a330bbbbe9ff8f3, type: 3}
+  prefab: {fileID: 1671389453957212, guid: 3c4c5d66cf736c149bcf5c93ea5603fa, type: 3}
+  stackable: 1
+  maxStack: 99
+  healthEffect: 0
+  hungerEffect: 40
+  thirstEffect: 0
+  armorPoints: 0
+  attackPoints: 0
+  itemType: 2
+  equipmentType: 0

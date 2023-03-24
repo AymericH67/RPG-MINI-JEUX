@@ -9,6 +9,7 @@ public class MonstreAI : MonoBehaviour
 
     [SerializeField] private NavMeshAgent agent;
     private bool hasDestination;
+    private bool isDead;
     public GameObject player;
     public AIStatData aiStat;
 
@@ -25,6 +26,8 @@ public class MonstreAI : MonoBehaviour
 
     [SerializeField] private float wanderingDistanceMin;
     [SerializeField] private float wanderingDistanceMax;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float currentHealth;
 
     private void Start()
     {
@@ -37,6 +40,9 @@ public class MonstreAI : MonoBehaviour
 
         wanderingDistanceMin = aiStat.wanderingDistanceMin;
         wanderingDistanceMax = aiStat.wanderingDistanceMax;
+
+        maxHealth = aiStat.health;
+        currentHealth = maxHealth;
     }
 
     private void Update()
@@ -77,6 +83,11 @@ public class MonstreAI : MonoBehaviour
         {
             player = null;
         }
+    }
+
+    public void TakeDammage(float damages)
+    {
+        currentHealth -= damages;
     }
 
     // créé la nouvelle destination du joueur

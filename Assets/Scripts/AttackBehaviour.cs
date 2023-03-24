@@ -49,7 +49,7 @@ public class AttackBehaviour : MonoBehaviour
         {
             if(hit.transform.CompareTag("AI"))
             {
-                EnemyAI enemy = hit.transform.GetComponent<EnemyAI>();
+                MonstreAI enemy = hit.transform.GetComponent<MonstreAI>();
                 enemy.TakeDammage(equipmentSystem.equipedWeaponItem.attackPoints);
             }
         }
