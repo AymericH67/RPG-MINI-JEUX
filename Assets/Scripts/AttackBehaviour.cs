@@ -15,6 +15,9 @@ public class AttackBehaviour : MonoBehaviour
     [SerializeField]
     private InteractBehaviour interactBehaviour;
 
+    [SerializeField]
+    private MonstreAI monstreAI;
+
     [Header("Configuration")]
     private bool isAttacking;
 
@@ -27,6 +30,10 @@ public class AttackBehaviour : MonoBehaviour
     [SerializeField]
     private Vector3 attackOffset;
 
+    [Header("Enemy")]
+    private GameObject AiEnemy;
+    public bool makeDammage = false;
+
     void Update()
     {
         // Debug.DrawRay(transform.position + attackOffset, transform.forward * attackRange, Color.red);
@@ -34,24 +41,32 @@ public class AttackBehaviour : MonoBehaviour
         if(Input.GetMouseButtonDown(0) && CanAttack())
         {
             isAttacking = true;
-            SendAttack();
             animator.SetTrigger("Attack");
+
+            if(makeDammage == true)
+            {
+                monstreAI.TakeDammage(equipmentSystem.equipedWeaponItem.attackPoints);
+            }
         }
     }
 
-    void SendAttack()
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Attack sent");
-
-        RaycastHit hit;
-
-        if(Physics.Raycast(transform.position + attackOffset, transform.forward, out hit, attackRange, layerMask))
+        if(other.tag == "AI")
         {
-            if(hit.transform.CompareTag("AI"))
-            {
-                MonstreAI enemy = hit.transform.GetComponent<MonstreAI>();
-                enemy.TakeDammage(equipmentSystem.equipedWeaponItem.attackPoints);
-            }
+            AiEnemy = other.gameObject;
+            monstreAI = other.GetComponent<MonstreAI>();
+            makeDammage = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "AI")
+        {
+            AiEnemy = null;
+            monstreAI = null;
+            makeDammage = false;
         }
     }
 

@@ -9,11 +9,16 @@ public class MonstreAI : MonoBehaviour
 
     [SerializeField] private NavMeshAgent agent;
     private bool hasDestination;
-    private bool isDead;
+    private bool isDead = false;
     public GameObject player;
     public AIStatData aiStat;
 
-    [Header("Wandering parameters")]
+    [Header("GameObjectToInstantiateOnDeath")]
+
+    [SerializeField] private ItemData obj1;
+    [SerializeField] private ItemData obj2;
+    [SerializeField] private ItemData obj3;
+    [SerializeField] private ItemData obj4;
 
     [Header("Stats")]
 
@@ -87,7 +92,38 @@ public class MonstreAI : MonoBehaviour
 
     public void TakeDammage(float damages)
     {
+        if (isDead)
+        {
+            return;
+        }
+
         currentHealth -= damages;
+
+        if(currentHealth <= 0) 
+        {
+            // spawn des objets a la mort de l'ia  // ( obj1/2/3/4 = itemData)
+
+            if (obj1 != null)
+            {
+                GameObject.Instantiate(obj1.prefab);
+            }
+            if (obj2 != null)
+            {
+                GameObject.Instantiate(obj2.prefab);
+            }
+            if (obj3 != null)
+            {
+                GameObject.Instantiate(obj3.prefab);
+            }
+            if (obj4 != null)
+            {
+                GameObject.Instantiate(obj4.prefab);
+            }
+
+            isDead = true;
+            enabled = false;
+            agent.enabled = false;
+        }
     }
 
     // créé la nouvelle destination du joueur
