@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField]
     private float healthDecreaseRateForHungerAndThirst;
+
+    [Header("Coins")]
+    public int coins;
+    public string coinStr;
+    public TextMeshProUGUI coinText;
 
     [Header("Hunger")]
     [SerializeField]
@@ -59,6 +65,13 @@ public class PlayerStats : MonoBehaviour
     void Update()
     {
         UpdateHungerAndThirstBarsFill();
+
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            TakeDamage(50f);
+        }
+        coinStr = coins.ToString();
+        coinText.text = coinStr;
     }
 
     public void TakeDamage(float damage, bool overTime = false)

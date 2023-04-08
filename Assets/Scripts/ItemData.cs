@@ -12,6 +12,8 @@ public class ItemData : ScriptableObject
     public GameObject prefab;
     public bool stackable;
     public int maxStack;
+    public int price;
+    public string priceString;
 
     [Header("Effects")]
     public float healthEffect;

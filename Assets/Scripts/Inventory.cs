@@ -50,7 +50,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("I"))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             if(isOpen)
             {
